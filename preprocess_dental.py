@@ -137,7 +137,7 @@ def get_caries_count(df, tooth_list, codings=None):
     if codings is None:
         codings = CARIES_CODINGS
     # No Caries Col for 1,32
-    tl = del_not_present_cols(tooth_list, [1, 32])
+    tl = del_not_present_cols(tooth_list, [1, 16, 17, 32])
 
     cols = list(map(get_tooth_caries_col_name, tl))
     data = df[cols]
@@ -218,6 +218,20 @@ def get_other_non_carious_restoration(df, codings=None):
         codings = ROOT_CODINGS
     data = df[['OHXRCARO', 'OHXRRESO']]
     return data.applymap(lambda x: codings['nan'] if np.isnan(x) else codings[x]).sum(axis=1)
+
+
+def preprocess_dental_data():
+    data = pd.DataFrame(get_data()['SEQN'])
+    data['ANTERIOR_TOOTH_COUNT'] = get_tooth_count(get_data(), ANTERIOR)
+    data['POSTERIOR_TOOTH_COUNT'] = get_tooth_count(get_data(), POSTERIOR)
+    data['ANTERIOR_CARIES_COUNT'] = get_caries_count(get_data(), ANTERIOR)
+    data['POSTERIOR_CARIES_COUNT'] = get_caries_count(get_data(), POSTERIOR)
+    data['ANTERIOR_DENTAL_SEALANT_COUNT'] = get_sealant_count(get_data(), ANTERIOR)
+    data['POSTERIOR_DENTAL_SEALANT_COUNT'] = get_sealant_count(get_data(), POSTERIOR)
+    data['ROOT_CARIES'] = get_root_caries(get_data())
+    data['OTHER_NON_CARIOUS_ROOT_LESION'] = get_other_non_carious_restoration(get_data())
+    return data
+
 
 if __name__ == "__main__":
     # print(get_tooth_count(get_data(), ANTERIOR))
