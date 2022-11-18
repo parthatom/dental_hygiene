@@ -46,7 +46,7 @@ TOOTH_COUNT_CODINGS = {
     4: 0,
     5: 0,
     9: 0,
-    'nan': 0
+    'nan': np.nan
 }
 
 
@@ -57,6 +57,7 @@ def get_tc_col_name(t):
 def get_tooth_count(df, tooth_list, codings=None):
     """
     Gets tooth count from merging TOOTH_COUNT cols for all teeth in tooth_list
+    @param codings:
     @param df: DataFrame
     @type df: pd.DataFrame
     @param tooth_list: ANTERIOR or POSTERIOR
@@ -68,5 +69,129 @@ def get_tooth_count(df, tooth_list, codings=None):
     data = df[cols]
     return data.applymap(lambda x: codings['nan'] if np.isnan(x) else codings[x]).sum(axis=1)
 
+
+#
+#
+# Code 	Description	                                                            Count	Cumulative  Convert
+# A	    Primary tooth with a restored surface condition	                        0	    0           1
+# D	    Sound primary tooth	                                                    0	    0           0
+# E	    Missing due to dental disease	                                        1197	1197        3
+# F	    Permanent tooth with a restored surface condition	                    2908	4105        1
+# J	    Permanent root tip is present but no restorative replacement is present	131	    4236        3
+# K	    Primary tooth with a dental carious surface condition	                0	    4236        2
+# M	    Missing due to other causes	                                            47	    4283        3
+# P	    Missing due to dental disease but replaced by a removable restoration	1019	5302        3
+# Q	    Missing due to other causes but replaced by a removable restoration	    37	    5339        3
+# R	    Missing due to dental disease but replaced by a fixed restoration	    13	    5352        3
+# S	    Sound permanent tooth	                                                4394    9746        0
+# T	    Permanent root tip is present but a restorative replacement is present	0	    9746        3
+# U	    Unerupted	                                                            3297	13043       nan
+# X	    Missing due to other causes but replaced by a fixed restoration	        0	    13043       nan
+# Y	    Tooth present, condition cannot be assessed	                            11	    13054       nan
+# Z	    Permanent tooth with a dental carious surface condition	                220	    13274       2
+# nan	Missing	                                                                498	    13772       nan
+
+CARIES_CODINGS = {
+    'A': 1,
+    'D': 0,
+    'E': 3,
+    'F': 1,
+    'J': 3,
+    'K': 2,
+    'M': 3,
+    'P': 3,
+    'Q': 3,
+    'R': 3,
+    'S': 0,
+    'T': 3,
+    'U': np.nan,
+    'X': np.nan,
+    'Y': np.nan,
+    'Z': 2,
+    'nan': np.nan,
+    '' : np.nan
+}
+
+
+def get_tooth_caries_col_name(t):
+    return 'OHX{tooth:02d}CTC'.format(tooth=t)
+
+
+def get_caries_count(df, tooth_list, codings=None):
+    """
+    Gets tooth count from merging TOOTH_COUNT cols for all teeth in tooth_list
+    @param codings:
+    @param df: DataFrame
+    @type df: pd.DataFrame
+    @param tooth_list: ANTERIOR or POSTERIOR
+    @return: pd.Series of Tooth Count
+    """
+    if codings is None:
+        codings = CARIES_CODINGS
+    # No Caries Col for 1,32
+    tl = tooth_list.copy()
+    if 1 in tl:
+        del tl[tl.index(1)]
+    if 32 in tl:
+        del tl[tl.index(32)]
+
+    cols = list(map(get_tooth_caries_col_name, tl))
+    data = df[cols]
+    return data.applymap(lambda x: codings[x.decode()]).sum(axis=1)
+
+
+#  Dental Sealants Data Description
+#
+# Code  Description	                                    Count	Cumulative	Convert
+# 0	    Sealant not present	                            4194	4194	    0
+# 1	    Occlusal sealant on permanent tooth	            102 	4296	    1
+# 2	    Facial sealant on permanent tooth	            0	    4296	    1
+# 3	    Lingual sealant on permanent tooth	            0	    4296	    1
+# 4	    Occlusal sealant on primary tooth	            51	    4347	    1
+# 9	    Cannot be assessed	                            41	    4388	    nan
+# 12	Occlusal-facial sealant on permanent tooth	    0	    4388	    1
+# 13	Occlusal-lingual sealant on permanent tooth	    0	    4388	    1
+# nan	Missing	                                        9384	13772       nan
+
+SEALANT_CODINGS = {
+    0: 0,
+    1: 1,
+    2: 1,
+    3: 1,
+    4: 1,
+    9: np.nan,
+    12: 1,
+    13: 1,
+    'nan': np.nan
+}
+
+
+def get_sealant_col_name(t):
+    return 'OHX{tooth:02d}SE'.format(tooth=t)
+
+
+def get_sealant_count(df, tooth_list, codings=None):
+    """
+    Gets tooth count from merging TOOTH_COUNT cols for all teeth in tooth_list
+    @param codings:
+    @param df: DataFrame
+    @type df: pd.DataFrame
+    @param tooth_list: ANTERIOR or POSTERIOR
+    @return: pd.Series of Tooth Count
+    """
+    if codings is None:
+        codings = SEALANT_CODINGS
+    # No Sealant Col for 1,32
+    tl = tooth_list.copy()
+    if 1 in tl:
+        del tl[tl.index(1)]
+    if 32 in tl:
+        del tl[tl.index(32)]
+
+    cols = list(map(get_sealant_col_name, tl))
+    data = df[cols]
+    return data.applymap(lambda x: codings['nan'] if np.isnan(x) else codings[x]).sum(axis=1)
+
 if __name__ == "__main__":
-    print(get_tooth_count(get_data(), ANTERIOR))
+    #print(get_tooth_count(get_data(), ANTERIOR))
+    print(get_caries_count(get_data(), ANTERIOR))
