@@ -109,12 +109,20 @@ CARIES_CODINGS = {
     'Y': np.nan,
     'Z': 2,
     'nan': np.nan,
-    '' : np.nan
+    '': np.nan
 }
 
 
 def get_tooth_caries_col_name(t):
     return 'OHX{tooth:02d}CTC'.format(tooth=t)
+
+
+def del_not_present_cols(l, np):
+    l1 = l.copy()
+    for x in np:
+        if x in l1:
+            del l1[l1.index(x)]
+    return l1
 
 
 def get_caries_count(df, tooth_list, codings=None):
@@ -129,11 +137,7 @@ def get_caries_count(df, tooth_list, codings=None):
     if codings is None:
         codings = CARIES_CODINGS
     # No Caries Col for 1,32
-    tl = tooth_list.copy()
-    if 1 in tl:
-        del tl[tl.index(1)]
-    if 32 in tl:
-        del tl[tl.index(32)]
+    tl = del_not_present_cols(tooth_list, [1, 32])
 
     cols = list(map(get_tooth_caries_col_name, tl))
     data = df[cols]
@@ -162,7 +166,8 @@ SEALANT_CODINGS = {
     9: np.nan,
     12: 1,
     13: 1,
-    'nan': np.nan
+    'nan': np.nan,
+    '': np.nan
 }
 
 
@@ -182,16 +187,41 @@ def get_sealant_count(df, tooth_list, codings=None):
     if codings is None:
         codings = SEALANT_CODINGS
     # No Sealant Col for 1,32
-    tl = tooth_list.copy()
-    if 1 in tl:
-        del tl[tl.index(1)]
-    if 32 in tl:
-        del tl[tl.index(32)]
-
+    tl = del_not_present_cols(tooth_list, [1, 6, 8, 9, 11, 16, 17, 22, 23, 24, 25, 26, 27, 32])
     cols = list(map(get_sealant_col_name, tl))
     data = df[cols]
+    return data.applymap(lambda x: codings[''] if not x.decode() else codings[int(x.decode())]).sum(axis=1)
+
+
+#   Root Caries, other lesions X [restored , not] Data Description
+# Code Description	            Count   Convert
+# 1	    Yes	                    1085    1
+# 2	    No	                    6916	0
+# 9	    Cannot be accessed	    7		nan
+# .	    Missing	                5764	nan
+
+ROOT_CODINGS = {
+    1:1,
+    2:0,
+    9: np.nan,
+    'nan': np.nan
+}
+
+def get_root_caries(df, codings=None):
+    if codings is None:
+        codings = ROOT_CODINGS
+    data = df[['OHXRCAR', 'OHXRRES']]
+    return data.applymap(lambda x: codings['nan'] if np.isnan(x) else codings[x]).sum(axis=1)
+
+def get_other_non_carious_restoration(df, codings=None):
+    if codings is None:
+        codings = ROOT_CODINGS
+    data = df[['OHXRCARO', 'OHXRRESO']]
     return data.applymap(lambda x: codings['nan'] if np.isnan(x) else codings[x]).sum(axis=1)
 
 if __name__ == "__main__":
-    #print(get_tooth_count(get_data(), ANTERIOR))
-    print(get_caries_count(get_data(), ANTERIOR))
+    # print(get_tooth_count(get_data(), ANTERIOR))
+    # print(get_caries_count(get_data(), ANTERIOR))
+    # print(get_sealant_count(get_data(), ANTERIOR))
+    print(get_root_caries(get_data()))
+    print(get_other_non_carious_restoration(get_data()))
