@@ -221,15 +221,16 @@ def get_other_non_carious_restoration(df, codings=None):
 
 
 def preprocess_dental_data():
-    data = pd.DataFrame(get_data()['SEQN'])
-    data['ANTERIOR_TOOTH_COUNT'] = get_tooth_count(get_data(), ANTERIOR)
-    data['POSTERIOR_TOOTH_COUNT'] = get_tooth_count(get_data(), POSTERIOR)
-    data['ANTERIOR_CARIES_COUNT'] = get_caries_count(get_data(), ANTERIOR)
-    data['POSTERIOR_CARIES_COUNT'] = get_caries_count(get_data(), POSTERIOR)
-    data['ANTERIOR_DENTAL_SEALANT_COUNT'] = get_sealant_count(get_data(), ANTERIOR)
-    data['POSTERIOR_DENTAL_SEALANT_COUNT'] = get_sealant_count(get_data(), POSTERIOR)
-    data['ROOT_CARIES'] = get_root_caries(get_data())
-    data['OTHER_NON_CARIOUS_ROOT_LESION'] = get_other_non_carious_restoration(get_data())
+    df = get_data()
+    data = pd.DataFrame(df['SEQN'])
+    data['ANTERIOR_TOOTH_COUNT'] = get_tooth_count(df, ANTERIOR)
+    data['POSTERIOR_TOOTH_COUNT'] = get_tooth_count(df, POSTERIOR)
+    data['ANTERIOR_CARIES_COUNT'] = get_caries_count(df, ANTERIOR)
+    data['POSTERIOR_CARIES_COUNT'] = get_caries_count(df, POSTERIOR)
+    data['ANTERIOR_DENTAL_SEALANT_COUNT'] = get_sealant_count(df, ANTERIOR)
+    data['POSTERIOR_DENTAL_SEALANT_COUNT'] = get_sealant_count(df, POSTERIOR)
+    data['ROOT_CARIES'] = get_root_caries(df)
+    data['OTHER_NON_CARIOUS_ROOT_LESION'] = get_other_non_carious_restoration(df)
     return data
 
 
