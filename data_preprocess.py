@@ -55,13 +55,13 @@ def preprocess(
         df_data[['OHXRCAR', 'OHXRCARO', 'OHXRRES', 'OHXRRESO']].fillna(0))
 
     # Change 'Refused'/'Don't know'/'Incomplete' to either appropriate value or NaN
-    df_data.loc[df_data['WTDRD1PP'] == 0, 'WTDRD1PP'] = np.NaN      # incomplete -> NaN
-    df_data.loc[df_data['WTDR2DPP'] == 0, 'WTDR2DPP'] = np.NaN      # incomplete -> NaN
+    df_data.loc[df_data['WTDRD1PP'] == 0, 'WTDRD1PP'] = df_data['WTDRD1PP'].mean()      # incomplete -> mean
+    df_data.loc[df_data['WTDR2DPP'] == 0, 'WTDR2DPP'] = df_data['WTDR2DPP'].mean()      # incomplete -> mean
     df_data.loc[df_data['DR1DRSTZ'] == 5, 'DR1DRSTZ'] = 1           # incomplete -> meet minimum criteria
     df_data.loc[df_data['DR1MRESP'] >= 77, 'DR1MRESP'] = np.NaN     # Refused/dont know -> NaN
     df_data.loc[df_data['DR1HELP'] >= 77, 'DR1HELP'] = np.NaN       # Refused/dont know -> NaN
     df_data.loc[df_data['DBQ095Z'] == 99, 'DBQ095Z'] = np.NaN       # Refused/dont know -> NaN
-    df_data.loc[df_data['DBD100'] >= 7, 'DBD100'] = np.NaN          # Refused/dont know -> NaN
+    df_data.loc[df_data['DBD100'] >= 7, 'DBD100'] = 1               # Refused/dont know -> Rarely
     df_data.loc[(df_data['DRQSPREP'] == 9) | (df_data['DRQSPREP'] == 0), 'DRQSPREP'] = np.NaN   # Refused/dont know -> NaN
     df_data.loc[df_data['DR1STY'] == 9, 'DR1STY'] = 2               # Refused/dont know -> 2
     df_data.loc[(df_data['DRQSDIET'] == 9) | (df_data['DRQSDIET'] == 0), 'DRQSDIET'] = 2        # Refused/dont know -> 2
@@ -92,3 +92,4 @@ def preprocess(
 
 if __name__ == '__main__':
     df_data = preprocess()
+    print(df_data)
