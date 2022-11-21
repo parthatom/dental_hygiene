@@ -2,6 +2,7 @@ import pandas as pd
 import numpy as np
 import os
 
+from preprocess_dental import preprocess_dental_data
 
 def preprocess(
         dietary_url='https://wwwn.cdc.gov/Nchs/Nhanes/2017-2018/P_DSQTOT.XPT',
@@ -24,8 +25,7 @@ def preprocess(
         dietary_path if os.path.exists(dietary_path) else dietary_url)
     df_nutrition = pd.read_sas(nutrition_path if os.path.exists(
         nutrition_path) else nutrition_url)
-    df_dental = pd.read_sas(
-        dental_path if os.path.exists(dental_path) else dental_url)
+    df_dental = preprocess_dental_data()
 
     df_data = pd.merge(df_dietary, df_nutrition, on='SEQN')
     df_data = pd.merge(df_data, df_dental, on='SEQN')
@@ -38,21 +38,21 @@ def preprocess(
     df_data[attrs_set_0] = df_data[attrs_set_0].fillna(0)
 
     # drop Coronal Caries and Sealants attributes from dental data
-    attrs_keep = []
-    for attr in df_data.columns:
-        if not (attr.startswith('OHX') and (attr.endswith('CTC') or attr.endswith('CSC')
-                or attr.endswith('RTC') or attr.endswith('RSC') or attr.endswith('SE'))):
-            attrs_keep.append(attr)
-    df_data = df_data[attrs_keep]
+    # attrs_keep = []
+    # for attr in df_data.columns:
+    #     if not (attr.startswith('OHX') and (attr.endswith('CTC') or attr.endswith('CSC')
+    #             or attr.endswith('RTC') or attr.endswith('RSC') or attr.endswith('SE'))):
+    #         attrs_keep.append(attr)
+    # df_data = df_data[attrs_keep]
 
     # fill missing "dental implant or not?" with "no"
-    df_data.loc[:, 'OHXIMP'].fillna(2, inplace=True)
+    # df_data.loc[:, 'OHXIMP'].fillna(2, inplace=True)
     # fill missing "how often add salt?" with "don't know"
     df_data.loc[:, 'DBD100'].fillna(9, inplace=True)
 
     # fill missing "Root Caries, Non-carious Lesion, Root Caries Restoration, Non-carious Lesion Restoration" with "not detected"
-    df_data.update(
-        df_data[['OHXRCAR', 'OHXRCARO', 'OHXRRES', 'OHXRRESO']].fillna(0))
+    # df_data.update(
+    #     df_data[['OHXRCAR', 'OHXRCARO', 'OHXRRES', 'OHXRRESO']].fillna(0))
 
     # Change 'Refused'/'Don't know'/'Incomplete' to either appropriate value or NaN
     df_data.loc[df_data['WTDRD1PP'] == 0, 'WTDRD1PP'] = np.NaN      # incomplete -> NaN
@@ -73,13 +73,18 @@ def preprocess(
     df_data.loc[df_data['DSD010'] >= 7, 'DSD010'] = 2               # Refused/dont know -> 2
     df_data.loc[df_data['DSD010AN'] >= 7, 'DSD010AN'] = 2           # Refused/dont know -> 2
 
-    df_data = df_data.dropna()
-
     # Change categorical data to categorical columns
     cat_attrs = [
         'DR1DRSTZ', 'DRABF', 'DRDINT', 'DR1DAY', 'DR1LANG', 'DR1MRESP', 'DR1HELP', 'DBQ095Z',
-        'DBD100', 'DRQSPREP', 'DR1STY', 'DR1SKY', 'DRQSDIET', 'DR1_300', 'DR1TWSZ'
+        'DBD100', 'DRQSPREP', 'DR1STY', 'DR1SKY', 'DRQSDIET', 'DR1_300', 'DR1TWSZ',
+        "DSD010", "DSD010AN" # Dietary supplements
     ]
+
+    # fill missing values
+    df_data[cat_attrs] = df_data[cat_attrs].fillna(df_data[cat_attrs].mode().iloc[0])
+    df_data.fillna(df_data.mean(), inplace = True)
+    df_data = df_data.dropna()
+
     for attr in df_data.columns:
         if attr.startswith('DRQSDT'):
             cat_attrs.append(attr)
@@ -92,3 +97,4 @@ def preprocess(
 
 if __name__ == '__main__':
     df_data = preprocess()
+    print(df_data)
