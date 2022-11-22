@@ -26,10 +26,7 @@ def preprocess(
         dietary_path if os.path.exists(dietary_path) else dietary_url)
     df_nutrition = pd.read_sas(nutrition_path if os.path.exists(
         nutrition_path) else nutrition_url)
-    if for_modelling:
-        df_dental = preprocess_dental_data(usage='01', drop_all_na=True, skipna=False)
-    else:
-        df_dental = preprocess_dental_data()
+    df_dental = preprocess_dental_data()
 
     df_data = pd.merge(df_dietary, df_nutrition, on='SEQN')
 
@@ -99,7 +96,6 @@ def preprocess(
     if not for_modelling:
         df_data = pd.merge(df_data, df_dental, on='SEQN')
     else:
-        df_data = df_dental.merge(df_data, on='SEQN')
         df_data = df_data.set_index('SEQN')
     return df_data
 
