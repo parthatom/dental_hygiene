@@ -7,6 +7,7 @@ import os
 
 ANTERIOR = list(range(6, 12)) + list(range(22, 28))
 POSTERIOR = list(range(1, 6)) + list(range(12, 22)) + list(range(28, 33))
+ALL_TEETH = ANTERIOR + POSTERIOR
 
 # Some codings for easier usage later
 CODINGS = {
@@ -252,32 +253,62 @@ def preprocess_dental_data(usage='', set_index=False, skipna=True, drop_all_na=F
     data = pd.DataFrame(df['SEQN'])
     data['ANTERIOR_TOOTH_COUNT'] = get_tooth_count(df, ANTERIOR, skipna=skipna)
     data['POSTERIOR_TOOTH_COUNT'] = get_tooth_count(df, POSTERIOR, skipna=skipna)
+    data['TOTAL_TOOTH_COUNT'] = get_tooth_count(df, ALL_TEETH, skipna=skipna)
     data['ANTERIOR_CARIES_COUNT'] = get_caries_count(df, ANTERIOR, usage=usage, skipna=skipna)
     data['POSTERIOR_CARIES_COUNT'] = get_caries_count(df, POSTERIOR, usage=usage, skipna=skipna)
+    data['TOTAL_CARIES_COUNT'] = get_caries_count(df, ALL_TEETH, usage=usage, skipna=skipna)
     data['ANTERIOR_DENTAL_SEALANT_COUNT'] = get_sealant_count(df, ANTERIOR, skipna=skipna)
     data['POSTERIOR_DENTAL_SEALANT_COUNT'] = get_sealant_count(df, POSTERIOR, skipna=skipna)
+    data['TOTAL_SEALANT_COUNT'] = get_sealant_count(df, ALL_TEETH, skipna=skipna)
     data['ROOT_CARIES'] = get_root_caries(df, skipna=skipna)
     data['OTHER_NON_CARIOUS_ROOT_LESION'] = get_other_non_carious_restoration(df, skipna=skipna)
     if drop_all_na:
         data = data.dropna(subset=['ANTERIOR_CARIES_COUNT', 'POSTERIOR_CARIES_COUNT', 'ANTERIOR_DENTAL_SEALANT_COUNT',
                                    'POSTERIOR_DENTAL_SEALANT_COUNT', 'ROOT_CARIES', 'OTHER_NON_CARIOUS_ROOT_LESION'],
                            how='all')
-    if drop_all_na:
+    if drop_any_na:
         data = data.dropna(subset=['ANTERIOR_CARIES_COUNT', 'POSTERIOR_CARIES_COUNT', 'ANTERIOR_DENTAL_SEALANT_COUNT',
                                    'POSTERIOR_DENTAL_SEALANT_COUNT', 'ROOT_CARIES', 'OTHER_NON_CARIOUS_ROOT_LESION'],
                            how='any')
     if set_index:
         data = data.set_index('SEQN')
+    data['ANTERIOR_SIMPLE_01'] = data[get_teeth_subset_labels('ANTERIOR')].max(axis=1).\
+        map(lambda x: 1 if x > 0 else 0)
+    data['POSTERIOR_SIMPLE_01'] = data[get_teeth_subset_labels('POSTERIOR')].max(axis=1).\
+        map(lambda x: 1 if x > 0 else 0)
+    data['TOTAL_SIMPLE_01'] = data[get_teeth_subset_labels('')].max(axis=1).\
+        map(lambda x: 1 if x > 0 else 0)
+    data['SERIOUS_01'] = data.apply(get_serious_01_label, axis=1)
     return data
 
 
-# def preprocess_dental_data_for_multiclass():
-#
+ANTERIOR_LABELS = ['ANTERIOR_CARIES_COUNT', 'ANTERIOR_DENTAL_SEALANT_COUNT']
+POSTERIOR_LABELS = ['POSTERIOR_CARIES_COUNT', 'POSTERIOR_DENTAL_SEALANT_COUNT']
+ROOT_LABELS = ['ROOT_CARIES', 'OTHER_NON_CARIOUS_ROOT_LESION']
+
+
+def get_teeth_subset_labels(teeth_subset):
+    if teeth_subset == 'ANTERIOR':
+        return ANTERIOR_LABELS + ROOT_LABELS
+    if teeth_subset == 'POSTERIOR':
+        return POSTERIOR_LABELS + ROOT_LABELS
+    return ANTERIOR_LABELS + POSTERIOR_LABELS + ROOT_LABELS
+
+
+def get_serious_01_label(row):
+    for col in ['TOTAL_CARIES_COUNT', 'TOTAL_SEALANT_COUNT', 'OTHER_NON_CARIOUS_ROOT_LESION']:
+        if (not np.isnan(row[col])) and row[col] >= 6:
+            return 1
+    col = 'ROOT_CARIES'
+    if (not np.isnan(row[col])) and row[col] > 0:
+        return 1
+    return 0
 
 
 if __name__ == "__main__":
     # print(get_tooth_count(get_data(), ANTERIOR))
     # print(get_caries_count(get_data(), ANTERIOR))
     # print(get_sealant_count(get_data(), ANTERIOR))
-    print(get_root_caries(get_data()))
-    print(get_other_non_carious_restoration(get_data()))
+    # print(get_root_caries(get_data()))
+    # print(get_other_non_carious_restoration(get_data()))
+    print(preprocess_dental_data(usage='01', set_index=True, drop_all_na=True, skipna=False).describe())
