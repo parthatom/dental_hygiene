@@ -54,7 +54,7 @@ def get_tc_col_name(t):
     return 'OHX{tooth:02d}TC'.format(tooth=t)
 
 
-def get_tooth_count(df, tooth_list, codings=None):
+def get_tooth_count(df, tooth_list, codings=None, skipna=True):
     """
     Gets tooth count from merging TOOTH_COUNT cols for all teeth in tooth_list
     @param codings:
@@ -67,7 +67,7 @@ def get_tooth_count(df, tooth_list, codings=None):
         codings = TOOTH_COUNT_CODINGS
     cols = list(map(get_tc_col_name, tooth_list))
     data = df[cols]
-    return data.applymap(lambda x: codings['nan'] if np.isnan(x) else codings[x]).sum(axis=1)
+    return data.applymap(lambda x: codings['nan'] if np.isnan(x) else codings[x]).sum(axis=1, skipna=skipna)
 
 
 #
@@ -112,6 +112,27 @@ CARIES_CODINGS = {
     '': np.nan
 }
 
+CARIES_CODINGS_01 = {
+    'A': 1,
+    'D': 0,
+    'E': 1,
+    'F': 1,
+    'J': 1,
+    'K': 1,
+    'M': 1,
+    'P': 1,
+    'Q': 1,
+    'R': 1,
+    'S': 0,
+    'T': 1,
+    'U': np.nan,
+    'X': np.nan,
+    'Y': np.nan,
+    'Z': 1,
+    'nan': np.nan,
+    '': np.nan
+}
+
 
 def get_tooth_caries_col_name(t):
     return 'OHX{tooth:02d}CTC'.format(tooth=t)
@@ -125,9 +146,10 @@ def del_not_present_cols(l, np):
     return l1
 
 
-def get_caries_count(df, tooth_list, codings=None):
+def get_caries_count(df, tooth_list, codings=None, usage='01', skipna=True):
     """
     Gets tooth count from merging TOOTH_COUNT cols for all teeth in tooth_list
+    @param usage: 01 for 01 data
     @param codings:
     @param df: DataFrame
     @type df: pd.DataFrame
@@ -136,12 +158,14 @@ def get_caries_count(df, tooth_list, codings=None):
     """
     if codings is None:
         codings = CARIES_CODINGS
+    if usage == '01':
+        codings = CARIES_CODINGS_01
     # No Caries Col for 1,32
     tl = del_not_present_cols(tooth_list, [1, 16, 17, 32])
 
     cols = list(map(get_tooth_caries_col_name, tl))
     data = df[cols]
-    return data.applymap(lambda x: codings[x.decode()]).sum(axis=1)
+    return data.applymap(lambda x: codings[x.decode()]).sum(axis=1, skipna=skipna)
 
 
 #  Dental Sealants Data Description
@@ -175,7 +199,7 @@ def get_sealant_col_name(t):
     return 'OHX{tooth:02d}SE'.format(tooth=t)
 
 
-def get_sealant_count(df, tooth_list, codings=None):
+def get_sealant_count(df, tooth_list, codings=None, skipna=True):
     """
     Gets tooth count from merging TOOTH_COUNT cols for all teeth in tooth_list
     @param codings:
@@ -190,7 +214,8 @@ def get_sealant_count(df, tooth_list, codings=None):
     tl = del_not_present_cols(tooth_list, [1, 6, 8, 9, 11, 16, 17, 22, 23, 24, 25, 26, 27, 32])
     cols = list(map(get_sealant_col_name, tl))
     data = df[cols]
-    return data.applymap(lambda x: codings[''] if not x.decode() else codings[int(x.decode())]).sum(axis=1)
+    return data.applymap(lambda x: codings[''] if not x.decode() else codings[int(x.decode())]).sum(axis=1,
+                                                                                                    skipna=skipna)
 
 
 #   Root Caries, other lesions X [restored , not] Data Description
@@ -201,37 +226,53 @@ def get_sealant_count(df, tooth_list, codings=None):
 # .	    Missing	                5764	nan
 
 ROOT_CODINGS = {
-    1:1,
-    2:0,
+    1: 1,
+    2: 0,
     9: np.nan,
     'nan': np.nan
 }
 
-def get_root_caries(df, codings=None):
+
+def get_root_caries(df, codings=None, skipna=True):
     if codings is None:
         codings = ROOT_CODINGS
     data = df[['OHXRCAR', 'OHXRRES']]
-    return data.applymap(lambda x: codings['nan'] if np.isnan(x) else codings[x]).sum(axis=1)
+    return data.applymap(lambda x: codings['nan'] if np.isnan(x) else codings[x]).sum(axis=1, skipna=skipna)
 
-def get_other_non_carious_restoration(df, codings=None):
+
+def get_other_non_carious_restoration(df, codings=None, skipna=True):
     if codings is None:
         codings = ROOT_CODINGS
     data = df[['OHXRCARO', 'OHXRRESO']]
-    return data.applymap(lambda x: codings['nan'] if np.isnan(x) else codings[x]).sum(axis=1)
+    return data.applymap(lambda x: codings['nan'] if np.isnan(x) else codings[x]).sum(axis=1, skipna=skipna)
 
 
-def preprocess_dental_data():
+def preprocess_dental_data(usage='', set_index=False, skipna=True, drop_all_na=False, drop_any_na=False):
     df = get_data()
     data = pd.DataFrame(df['SEQN'])
-    data['ANTERIOR_TOOTH_COUNT'] = get_tooth_count(df, ANTERIOR)
-    data['POSTERIOR_TOOTH_COUNT'] = get_tooth_count(df, POSTERIOR)
-    data['ANTERIOR_CARIES_COUNT'] = get_caries_count(df, ANTERIOR)
-    data['POSTERIOR_CARIES_COUNT'] = get_caries_count(df, POSTERIOR)
-    data['ANTERIOR_DENTAL_SEALANT_COUNT'] = get_sealant_count(df, ANTERIOR)
-    data['POSTERIOR_DENTAL_SEALANT_COUNT'] = get_sealant_count(df, POSTERIOR)
-    data['ROOT_CARIES'] = get_root_caries(df)
-    data['OTHER_NON_CARIOUS_ROOT_LESION'] = get_other_non_carious_restoration(df)
+    data['ANTERIOR_TOOTH_COUNT'] = get_tooth_count(df, ANTERIOR, skipna=skipna)
+    data['POSTERIOR_TOOTH_COUNT'] = get_tooth_count(df, POSTERIOR, skipna=skipna)
+    data['ANTERIOR_CARIES_COUNT'] = get_caries_count(df, ANTERIOR, usage=usage, skipna=skipna)
+    data['POSTERIOR_CARIES_COUNT'] = get_caries_count(df, POSTERIOR, usage=usage, skipna=skipna)
+    data['ANTERIOR_DENTAL_SEALANT_COUNT'] = get_sealant_count(df, ANTERIOR, skipna=skipna)
+    data['POSTERIOR_DENTAL_SEALANT_COUNT'] = get_sealant_count(df, POSTERIOR, skipna=skipna)
+    data['ROOT_CARIES'] = get_root_caries(df, skipna=skipna)
+    data['OTHER_NON_CARIOUS_ROOT_LESION'] = get_other_non_carious_restoration(df, skipna=skipna)
+    if drop_all_na:
+        data = data.dropna(subset=['ANTERIOR_CARIES_COUNT', 'POSTERIOR_CARIES_COUNT', 'ANTERIOR_DENTAL_SEALANT_COUNT',
+                                   'POSTERIOR_DENTAL_SEALANT_COUNT', 'ROOT_CARIES', 'OTHER_NON_CARIOUS_ROOT_LESION'],
+                           how='all')
+    if drop_all_na:
+        data = data.dropna(subset=['ANTERIOR_CARIES_COUNT', 'POSTERIOR_CARIES_COUNT', 'ANTERIOR_DENTAL_SEALANT_COUNT',
+                                   'POSTERIOR_DENTAL_SEALANT_COUNT', 'ROOT_CARIES', 'OTHER_NON_CARIOUS_ROOT_LESION'],
+                           how='any')
+    if set_index:
+        data = data.set_index('SEQN')
     return data
+
+
+# def preprocess_dental_data_for_multiclass():
+#
 
 
 if __name__ == "__main__":
