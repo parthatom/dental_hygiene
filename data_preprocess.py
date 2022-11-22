@@ -7,7 +7,8 @@ from preprocess_dental import preprocess_dental_data
 def preprocess(
         dietary_url='https://wwwn.cdc.gov/Nchs/Nhanes/2017-2018/P_DSQTOT.XPT',
         nutrition_url='https://wwwn.cdc.gov/Nchs/Nhanes/2017-2018/P_DR1TOT.XPT',
-        dental_url='https://wwwn.cdc.gov/Nchs/Nhanes/2017-2018/P_OHXDEN.XPT'):
+        dental_url='https://wwwn.cdc.gov/Nchs/Nhanes/2017-2018/P_OHXDEN.XPT',
+        for_modelling=False):
     '''
     @description: 
         Pre-process the Dietary Supplement, Nutrient Intakes, and Dental Health data
@@ -25,10 +26,13 @@ def preprocess(
         dietary_path if os.path.exists(dietary_path) else dietary_url)
     df_nutrition = pd.read_sas(nutrition_path if os.path.exists(
         nutrition_path) else nutrition_url)
-    df_dental = preprocess_dental_data()
+    if for_modelling:
+        df_dental = preprocess_dental_data(usage='01', drop_all_na=True, skipna=False)
+    else:
+        df_dental = preprocess_dental_data()
 
     df_data = pd.merge(df_dietary, df_nutrition, on='SEQN')
-    df_data = pd.merge(df_data, df_dental, on='SEQN')
+
 
     # fill the missing precise quantatative or special dietary data with 0
     attrs_set_0 = ['DR1SKY']
@@ -91,6 +95,12 @@ def preprocess(
     for attr in cat_attrs:
         df_data[attr] = pd.Categorical(df_data[attr])
 
+    # Merge Dental Data at the end
+    if not for_modelling:
+        df_data = pd.merge(df_data, df_dental, on='SEQN')
+    else:
+        df_data = df_dental.merge(df_data, on='SEQN')
+        df_data = df_data.set_index('SEQN')
     return df_data
 
 
