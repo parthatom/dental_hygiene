@@ -12,9 +12,8 @@ from sklearn.discriminant_analysis import QuadraticDiscriminantAnalysis
 from sklearn.ensemble import AdaBoostClassifier
 
 
-def pre_processing(labels=None):
-    if labels is None:
-        labels = ['SERIOUS_01']
+def pre_processing(label='SERIOUS_01'):
+    labels = ['SERIOUS_01']
 
     # Get Data
     data = preprocess(for_modelling=True)
@@ -22,6 +21,7 @@ def pre_processing(labels=None):
     data = pd.merge(dental_data, data, left_index=True, right_index=True)
 
     # Numerical and Categorical Data
+    Y = data[labels]
     data = data.drop(columns=labels)
     categorical_cols = list(filter(lambda x: isinstance(data[x].dtype, pd.api.types.CategoricalDtype), data.columns))
     numerical_cols = list(filter(lambda x: x not in categorical_cols, data.columns))
@@ -33,12 +33,11 @@ def pre_processing(labels=None):
 
     # One Hot Encoding
     cat_data = data[categorical_cols]
-    ohe = OneHotEncoder(sparse=False).fit(cat_data)
+    ohe = OneHotEncoder(sparse=False).fit_transform(cat_data)
 
-    Y = data[labels]
-    data = pd.concat([Y[labels[0]].reset_index(drop=True), pd.DataFrame(pca), pd.DataFrame(ohe)], axis=1)
+    data = pd.concat([Y.reset_index(drop=True), pd.DataFrame(pca), pd.DataFrame(ohe)], axis=1)
 
-    y = data[labels[0]]
+    y = data[label]
     x = data.drop(columns=labels)
     X_train, X_test, Y_train, Y_test = train_test_split(x, y, test_size=0.2)
     return X_train, X_test, Y_train, Y_test
@@ -49,7 +48,7 @@ def get_score(clf, X_train, X_test, Y_train, Y_test):
     return clf.score(X_test, Y_test)
 
 
-def train():
+def train(labels=None):
     X_train, X_test, Y_train, Y_test = pre_processing()
     names = ['Random Forest', 'SVM_RBC', 'SVM_Poly', 'QDA']
     clfs = [RandomForestClassifier(max_depth=2, random_state=0),
