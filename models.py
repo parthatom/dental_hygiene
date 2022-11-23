@@ -57,7 +57,7 @@ def train():
             SVC(kernel='poly'),
             QuadraticDiscriminantAnalysis(),
             ]
-    scores = [get_score(clf, X_train, X_test, Y_train, Y_test)]
+    scores = [get_score(clf, X_train, X_test, Y_train, Y_test) for clf in clfs]
     names.append('ADABoost')
     scores.append(get_score(AdaBoostClassifier(base_estimator=clfs[0]), X_train, X_test, Y_train, Y_test))
     return scores
