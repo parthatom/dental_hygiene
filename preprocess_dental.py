@@ -52,6 +52,11 @@ TOOTH_COUNT_CODINGS = {
 
 
 def get_tc_col_name(t):
+    '''
+    Get Col Name in data
+    @param t: Tooth Number
+    @return: Col Name
+    '''
     return 'OHX{tooth:02d}TC'.format(tooth=t)
 
 
@@ -72,24 +77,24 @@ def get_tooth_count(df, tooth_list, codings=None, skipna=True):
 
 
 #
-#
+# Caries
 # Code 	Description	                                                            Count	Cumulative  Convert
 # A	    Primary tooth with a restored surface condition	                        0	    0           1
 # D	    Sound primary tooth	                                                    0	    0           0
-# E	    Missing due to dental disease	                                        1197	1197        3
+# E	    Missing due to dental disease	                                        1197	1197        1
 # F	    Permanent tooth with a restored surface condition	                    2908	4105        1
-# J	    Permanent root tip is present but no restorative replacement is present	131	    4236        3
-# K	    Primary tooth with a dental carious surface condition	                0	    4236        2
-# M	    Missing due to other causes	                                            47	    4283        3
-# P	    Missing due to dental disease but replaced by a removable restoration	1019	5302        3
-# Q	    Missing due to other causes but replaced by a removable restoration	    37	    5339        3
-# R	    Missing due to dental disease but replaced by a fixed restoration	    13	    5352        3
+# J	    Permanent root tip is present but no restorative replacement is present	131	    4236        1
+# K	    Primary tooth with a dental carious surface condition	                0	    4236        1
+# M	    Missing due to other causes	                                            47	    4283        1
+# P	    Missing due to dental disease but replaced by a removable restoration	1019	5302        1
+# Q	    Missing due to other causes but replaced by a removable restoration	    37	    5339        1
+# R	    Missing due to dental disease but replaced by a fixed restoration	    13	    5352        1
 # S	    Sound permanent tooth	                                                4394    9746        0
-# T	    Permanent root tip is present but a restorative replacement is present	0	    9746        3
+# T	    Permanent root tip is present but a restorative replacement is present	0	    9746        1
 # U	    Unerupted	                                                            3297	13043       nan
 # X	    Missing due to other causes but replaced by a fixed restoration	        0	    13043       nan
 # Y	    Tooth present, condition cannot be assessed	                            11	    13054       nan
-# Z	    Permanent tooth with a dental carious surface condition	                220	    13274       2
+# Z	    Permanent tooth with a dental carious surface condition	                220	    13274       1
 # nan	Missing	                                                                498	    13772       nan
 
 CARIES_CODINGS = {
@@ -136,6 +141,11 @@ CARIES_CODINGS_01 = {
 
 
 def get_tooth_caries_col_name(t):
+    '''
+    Get Caries Col Name in Dataset
+    @param t: Tooth Number
+    @return: Col name
+    '''
     return 'OHX{tooth:02d}CTC'.format(tooth=t)
 
 
@@ -197,6 +207,11 @@ SEALANT_CODINGS = {
 
 
 def get_sealant_col_name(t):
+    '''
+    Get Sealant Col Name in Datset
+    @param t: Tooth Number
+    @return: Col Name
+    '''
     return 'OHX{tooth:02d}SE'.format(tooth=t)
 
 
@@ -235,6 +250,13 @@ ROOT_CODINGS = {
 
 
 def get_root_caries(df, codings=None, skipna=True):
+    '''
+    Sum Root Caries and Root caries Restorartion
+    @param df: Dataset
+    @param codings: Converion Matrix
+    @param skipna: How to treat NA values
+    @return: pd.Series
+    '''
     if codings is None:
         codings = ROOT_CODINGS
     data = df[['OHXRCAR', 'OHXRRES']]
@@ -242,6 +264,13 @@ def get_root_caries(df, codings=None, skipna=True):
 
 
 def get_other_non_carious_restoration(df, codings=None, skipna=True):
+    '''
+    Sum Other Caries and Other Restorartions
+    @param df: Dataset
+    @param codings: Converion Matrix
+    @param skipna: How to treat NA values
+    @return: pd.Series
+    '''
     if codings is None:
         codings = ROOT_CODINGS
     data = df[['OHXRCARO', 'OHXRRESO']]
@@ -249,6 +278,15 @@ def get_other_non_carious_restoration(df, codings=None, skipna=True):
 
 
 def preprocess_dental_data(usage='', set_index=False, skipna=True, drop_all_na=False, drop_any_na=False):
+    '''
+    Pre Process the Dental Health Data
+    @param usage: '01' if using for modelling
+    @param set_index: Whether or not to set the SEQN col as index
+    @param skipna: How to treat the NA values
+    @param drop_all_na: Drop rows with all na values
+    @param drop_any_na: Drop rows with any value as na
+    @return: pd.DataFrame
+    '''
     df = get_data()
     data = pd.DataFrame(df['SEQN'])
     data['ANTERIOR_TOOTH_COUNT'] = get_tooth_count(df, ANTERIOR, skipna=skipna)

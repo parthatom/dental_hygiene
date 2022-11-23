@@ -13,6 +13,11 @@ from sklearn.ensemble import AdaBoostClassifier
 
 
 def pre_processing(label='SERIOUS_01'):
+    '''
+    Split Data into train-test after scaling, PCA and One hot encodings
+    @param label: Y Label
+    @return: Processed Data
+    '''
     labels = ['SERIOUS_01']
 
     # Get Data
@@ -44,11 +49,25 @@ def pre_processing(label='SERIOUS_01'):
 
 
 def get_score(clf, X_train, X_test, Y_train, Y_test):
+    '''
+    Train and get accuracy of cld
+    @param clf: Classifier
+    @param X_train: Train X
+    @param X_test: Test X
+    @param Y_train: Train Y
+    @param Y_test: Test Y
+    @return: accuracy
+    '''
     clf.fit(X_train, Y_train)
     return clf.score(X_test, Y_test)
 
 
-def train(labels=None):
+def train(label=None):
+    '''
+    Train the various models
+    @param labels: Simple 01 or Serious 01, Defaults to Serious 01
+    @return: Dict {model:accuracy}
+    '''
     X_train, X_test, Y_train, Y_test = pre_processing()
     names = ['Random Forest', 'SVM_RBC', 'SVM_Poly', 'QDA']
     clfs = [RandomForestClassifier(max_depth=2, random_state=0),
@@ -59,7 +78,10 @@ def train(labels=None):
     scores = [get_score(clf, X_train, X_test, Y_train, Y_test) for clf in clfs]
     names.append('ADABoost')
     scores.append(get_score(AdaBoostClassifier(base_estimator=clfs[0]), X_train, X_test, Y_train, Y_test))
-    return scores
+    d = {}
+    for n,s in zip(names,scores):
+        d[n] = s
+    return d
 
 
 if __name__ == '__main__':
