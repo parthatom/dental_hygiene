@@ -1,0 +1,374 @@
+DSDCOUNT - Total # of Dietary Supplements Taken
+DSDANCNT - Total # of Antacids Taken
+DSD010 - Any Dietary Supplements Taken?
+DSD010AN - Any Antacids Taken?
+DSQTKCAL - Energy (kcal)
+DSQTPROT - Protein (gm)
+DSQTCARB - Carbohydrate (gm)
+DSQTSUGR - Total sugars (gm)
+DSQTFIBE - Dietary fiber (gm)
+DSQTTFAT - Total fat (gm)
+DSQTSFAT - Total saturated fatty acids (gm)
+DSQTMFAT - Total monounsaturated fatty acids (gm)
+DSQTPFAT - Total polyunsaturated fatty acids (gm)
+DSQTCHOL - Cholesterol (mg)
+DSQTLYCO - Lycopene (mcg)
+DSQTLZ - Lutein + zeaxanthin (mcg)
+DSQTVB1 - Thiamin (Vitamin B1) (mg)
+DSQTVB2 - Riboflavin (Vitamin B2) (mg)
+DSQTNIAC - Niacin (mg)
+DSQTVB6 - Vitamin B6 (mg)
+DSQTFA - Folic acid (mcg)
+DSQTFDFE - Folate, DFE (mcg)
+DSQTCHL - Total choline (mg)
+DSQTVB12 - Vitamin B12 (mcg)
+DSQTVC - Vitamin C (mg)
+DSQTVK - Vitamin K (mcg)
+DSQTVD - Vitamin D (D2 + D3) (mcg)
+DSQTCALC - Calcium (mg)
+DSQTPHOS - Phosphorus (mg)
+DSQTMAGN - Magnesium (mg)
+DSQTIRON - Iron (mg)
+DSQTZINC - Zinc (mg)
+DSQTCOPP - Copper (mg)
+DSQTSODI - Sodium (mg)
+DSQTPOTA - Potassium (mg)
+DSQTSELE - Selenium (mcg)
+DSQTCAFF - Caffeine (mg)
+DSQTIODI - Iodine (mcg)
+WTDRD1PP - Dietary day one sample weight
+WTDR2DPP - Dietary two-day sample weight
+DR1DRSTZ - Dietary recall status
+DR1EXMER - Interviewer ID code
+DRABF - Breast-fed infant (either day)
+DRDINT - Number of days of intake
+DR1DBIH - # of days b/w intake and HH interview
+DR1DAY - Intake day of the week
+DR1LANG - Language respondent used mostly
+DR1MRESP - Main respondent for this interview
+DR1HELP - Helped in responding for this interview
+DBQ095Z - Type of table salt used
+DBD100 - How often add salt to food at table
+DRQSPREP - Salt used in preparation?
+DR1STY - Salt used at table yesterday?
+DR1SKY - Type of salt used yesterday
+DRQSDIET - On special diet?
+DRQSDT1 - Weight loss/Low calorie diet
+DRQSDT2 - Low fat/Low cholesterol diet
+DRQSDT3 - Low salt/Low sodium diet
+DRQSDT4 - Sugar free/Low sugar diet
+DRQSDT5 - Low fiber diet
+DRQSDT6 - High fiber diet
+DRQSDT7 - Diabetic diet
+DRQSDT8 - Weight gain/Muscle building diet
+DRQSDT9 - Low carbohydrate diet
+DRQSDT10 - High protein diet
+DRQSDT11 - Gluten-free/Celiac diet
+DRQSDT12 - Renal/Kidney diet
+DRQSDT91 - Other special diet
+DR1TNUMF - Number of foods/beverages reported
+DR1TKCAL - Energy (kcal)
+DR1TPROT - Protein (gm)
+DR1TCARB - Carbohydrate (gm)
+DR1TSUGR - Total sugars (gm)
+DR1TFIBE - Dietary fiber (gm)
+DR1TTFAT - Total fat (gm)
+DR1TSFAT - Total saturated fatty acids (gm)
+DR1TMFAT - Total monounsaturated fatty acids (gm)
+DR1TPFAT - Total polyunsaturated fatty acids (gm)
+DR1TCHOL - Cholesterol (mg)
+DR1TATOC - Vitamin E as alpha-tocopherol (mg)
+DR1TATOA - Added alpha-tocopherol (Vitamin E) (mg)
+DR1TRET - Retinol (mcg)
+DR1TVARA - Vitamin A, RAE (mcg)
+DR1TACAR - Alpha-carotene (mcg)
+DR1TBCAR - Beta-carotene (mcg)
+DR1TCRYP - Beta-cryptoxanthin (mcg)
+DR1TLYCO - Lycopene (mcg)
+DR1TLZ - Lutein + zeaxanthin (mcg)
+DR1TVB1 - Thiamin (Vitamin B1) (mg)
+DR1TVB2 - Riboflavin (Vitamin B2) (mg)
+DR1TNIAC - Niacin (mg)
+DR1TVB6 - Vitamin B6 (mg)
+DR1TFOLA - Total folate (mcg)
+DR1TFA - Folic acid (mcg)
+DR1TFF - Food folate (mcg)
+DR1TFDFE - Folate, DFE (mcg)
+DR1TCHL - Total choline (mg)
+DR1TVB12 - Vitamin B12 (mcg)
+DR1TB12A - Added vitamin B12 (mcg)
+DR1TVC - Vitamin C (mg)
+DR1TVD - Vitamin D (D2 + D3) (mcg)
+DR1TVK - Vitamin K (mcg)
+DR1TCALC - Calcium (mg)
+DR1TPHOS - Phosphorus (mg)
+DR1TMAGN - Magnesium (mg)
+DR1TIRON - Iron (mg)
+DR1TZINC - Zinc (mg)
+DR1TCOPP - Copper (mg)
+DR1TSODI - Sodium (mg)
+DR1TPOTA - Potassium (mg)
+DR1TSELE - Selenium (mcg)
+DR1TCAFF - Caffeine (mg)
+DR1TTHEO - Theobromine (mg)
+DR1TALCO - Alcohol (gm)
+DR1TMOIS - Moisture (gm)
+DR1TS040 - SFA 4:0 (Butanoic) (gm)
+DR1TS060 - SFA 6:0 (Hexanoic) (gm)
+DR1TS080 - SFA 8:0 (Octanoic) (gm)
+DR1TS100 - SFA 10:0 (Decanoic) (gm)
+DR1TS120 - SFA 12:0 (Dodecanoic) (gm)
+DR1TS140 - SFA 14:0 (Tetradecanoic) (gm)
+DR1TS160 - SFA 16:0 (Hexadecanoic) (gm)
+DR1TS180 - SFA 18:0 (Octadecanoic) (gm)
+DR1TM161 - MFA 16:1 (Hexadecenoic) (gm)
+DR1TM181 - MFA 18:1 (Octadecenoic) (gm)
+DR1TM201 - MFA 20:1 (Eicosenoic) (gm)
+DR1TM221 - MFA 22:1 (Docosenoic) (gm)
+DR1TP182 - PFA 18:2 (Octadecadienoic) (gm)
+DR1TP183 - PFA 18:3 (Octadecatrienoic) (gm)
+DR1TP184 - PFA 18:4 (Octadecatetraenoic) (gm)
+DR1TP204 - PFA 20:4 (Eicosatetraenoic) (gm)
+DR1TP205 - PFA 20:5 (Eicosapentaenoic) (gm)
+DR1TP225 - PFA 22:5 (Docosapentaenoic) (gm)
+DR1TP226 - PFA 22:6 (Docosahexaenoic) (gm)
+DR1_300 - Compare food consumed yesterday to usual
+DR1_320Z - Total plain water drank yesterday (gm)
+DR1_330Z - Total tap water drank yesterday (gm)
+DR1BWATZ - Total bottled water drank yesterday (gm)
+DR1TWSZ - Tap water source
+DRD340 - Shellfish eaten during past 30 days
+DRD350A - Clams eaten during past 30 days
+DRD350AQ - # of times clams eaten in past 30 days
+DRD350B - Crabs eaten during past 30 days
+DRD350BQ - # of times crabs eaten in past 30 days
+DRD350C - Crayfish eaten during past 30 days
+DRD350CQ - # of times crayfish eaten past 30 days
+DRD350D - Lobsters eaten during past 30 days
+DRD350DQ - # of times lobsters eaten past 30 days
+DRD350E - Mussels eaten during past 30 days
+DRD350EQ - # of times mussels eaten in past 30 days
+DRD350F - Oysters eaten during past 30 days
+DRD350FQ - # of times oysters eaten in past 30 days
+DRD350G - Scallops eaten during past 30 days
+DRD350GQ - # of times scallops eaten past 30 days
+DRD350H - Shrimp eaten during past 30 days
+DRD350HQ - # of times shrimp eaten in past 30 days
+DRD350I - Other shellfish eaten past 30 days
+DRD350IQ - # of times other shellfish eaten
+DRD350J - Other unknown shellfish eaten past 30 d
+DRD350JQ - # of times other unknown shellfish eaten
+DRD350K - Refused on shellfish eaten past 30 days
+DRD360 - Fish eaten during past 30 days
+DRD370A - Breaded fish products eaten past 30 days
+DRD370AQ - # of times breaded fish products eaten
+DRD370B - Tuna eaten during past 30 days
+DRD370BQ - # of times tuna eaten in past 30 days
+DRD370C - Bass eaten during past 30 days
+DRD370CQ - # of times bass eaten in past 30 days
+DRD370D - Catfish eaten during past 30 days
+DRD370DQ - # of times catfish eaten in past 30 days
+DRD370E - Cod eaten during past 30 days
+DRD370EQ - # of times cod eaten in past 30 days
+DRD370F - Flatfish eaten during past 30 days
+DRD370FQ - # of times flatfish eaten past 30 days
+DRD370G - Haddock eaten during past 30 days
+DRD370GQ - # of times haddock eaten in past 30 days
+DRD370H - Mackerel eaten during past 30 days
+DRD370HQ - # of times mackerel eaten past 30 days
+DRD370I - Perch eaten during past 30 days
+DRD370IQ - # of times perch eaten in past 30 days
+DRD370J - Pike eaten during past 30 days
+DRD370JQ - # of times pike eaten in past 30 days
+DRD370K - Pollock eaten during past 30 days
+DRD370KQ - # of times pollock eaten in past 30 days
+DRD370L - Porgy eaten during past 30 days
+DRD370LQ - # of times porgy eaten in past 30 days
+DRD370M - Salmon eaten during past 30 days
+DRD370MQ - # of times salmon eaten in past 30 days
+DRD370N - Sardines eaten during past 30 days
+DRD370NQ - # of times sardines eaten past 30 days
+DRD370O - Sea bass eaten during past 30 days
+DRD370OQ - # of times sea bass eaten past 30 days
+DRD370P - Shark eaten during past 30 days
+DRD370PQ - # of times shark eaten in past 30 days
+DRD370Q - Swordfish eaten during past 30 days
+DRD370QQ - # of times swordfish eaten past 30 days
+DRD370R - Trout eaten during past 30 days
+DRD370RQ - # of times trout eaten in past 30 days
+DRD370S - Walleye eaten during past 30 days
+DRD370SQ - # of times walleye eaten in past 30 days
+DRD370T - Other fish eaten during past 30 days
+DRD370TQ - # of times other fish eaten past 30 days
+DRD370U - Other unknown fish eaten in past 30 days
+DRD370UQ - # of times other unknown fish eaten
+DRD370V - Refused on fish eaten past 30 days
+OHDEXSTS - Overall Oral Health Exam Status
+OHDDESTS - Dentition Status Code
+OHXIMP - Dental Implant: yes / no?
+OHX01TC - Tooth Count: #1
+OHX02TC - Tooth Count: #2
+OHX03TC - Tooth Count: #3
+OHX04TC - Tooth Count: #4
+OHX05TC - Tooth Count: #5
+OHX06TC - Tooth Count: #6
+OHX07TC - Tooth Count: #7
+OHX08TC - Tooth Count: #8
+OHX09TC - Tooth Count: #9
+OHX10TC - Tooth Count: #10
+OHX11TC - Tooth Count: #11
+OHX12TC - Tooth Count: #12
+OHX13TC - Tooth Count: #13
+OHX14TC - Tooth Count: #14
+OHX15TC - Tooth Count: #15
+OHX16TC - Tooth Count: #16
+OHX17TC - Tooth Count: #17
+OHX18TC - Tooth Count: #18
+OHX19TC - Tooth Count: #19
+OHX20TC - Tooth Count: #20
+OHX21TC - Tooth Count: #21
+OHX22TC - Tooth Count: #22
+OHX23TC - Tooth Count: #23
+OHX24TC - Tooth Count: #24
+OHX25TC - Tooth Count: #25
+OHX26TC - Tooth Count: #26
+OHX27TC - Tooth Count: #27
+OHX28TC - Tooth Count: #28
+OHX29TC - Tooth Count: #29
+OHX30TC - Tooth Count: #30
+OHX31TC - Tooth Count: #31
+OHX32TC - Tooth Count: #32
+OHX02CTC - Coronal Caries: Tooth Count #2
+OHX03CTC - Coronal Caries: Tooth Count #3
+OHX04CTC - Coronal Caries: Tooth Count #4
+OHX05CTC - Coronal Caries: Tooth Count #5
+OHX06CTC - Coronal Caries: Tooth Count #6
+OHX07CTC - Coronal Caries: Tooth Count #7
+OHX08CTC - Coronal Caries: Tooth Count #8
+OHX09CTC - Coronal Caries: Tooth Count #9
+OHX10CTC - Coronal Caries: Tooth Count #10
+OHX11CTC - Coronal Caries: Tooth Count #11
+OHX12CTC - Coronal Caries: Tooth Count #12
+OHX13CTC - Coronal Caries: Tooth Count #13
+OHX14CTC - Coronal Caries: Tooth Count #14
+OHX15CTC - Coronal Caries: Tooth Count #15
+OHX18CTC - Coronal Caries: Tooth Count #18
+OHX19CTC - Coronal Caries: Tooth Count #19
+OHX20CTC - Coronal Caries: Tooth Count #20
+OHX21CTC - Coronal Caries: Tooth Count #21
+OHX22CTC - Coronal Caries: Tooth Count #22
+OHX23CTC - Coronal Caries: Tooth Count #23
+OHX24CTC - Coronal Caries: Tooth Count #24
+OHX25CTC - Coronal Caries: Tooth Count #25
+OHX26CTC - Coronal Caries: Tooth Count #26
+OHX27CTC - Coronal Caries: Tooth Count #27
+OHX28CTC - Coronal Caries: Tooth Count #28
+OHX29CTC - Coronal Caries: Tooth Count #29
+OHX30CTC - Coronal Caries: Tooth Count #30
+OHX31CTC - Coronal Caries: Tooth Count #31
+OHX02CSC - Coronal Caries: Surface condition #2
+OHX03CSC - Coronal Caries: Surface condition #3
+OHX04CSC - Coronal Caries: Surface condition #4
+OHX05CSC - Coronal Caries: Surface condition #5
+OHX06CSC - Coronal Caries: Surface condition #6
+OHX07CSC - Coronal Caries: Surface condition #7
+OHX08CSC - Coronal Caries: Surface condition #8
+OHX09CSC - Coronal Caries: Surface condition #9
+OHX10CSC - Coronal Caries: Surface condition #10
+OHX11CSC - Coronal Caries: Surface condition #11
+OHX12CSC - Coronal Caries: Surface condition #12
+OHX13CSC - Coronal Caries: Surface condition #13
+OHX14CSC - Coronal Caries: Surface condition #14
+OHX15CSC - Coronal Caries: Surface condition #15
+OHX18CSC - Coronal Caries: Surface condition #18
+OHX19CSC - Coronal Caries: Surface condition #19
+OHX20CSC - Coronal Caries: Surface condition #20
+OHX21CSC - Coronal Caries: Surface condition #21
+OHX22CSC - Coronal Caries: Surface condition #22
+OHX23CSC - Coronal Caries: Surface condition #23
+OHX24CSC - Coronal Caries: Surface condition #24
+OHX25CSC - Coronal Caries: Surface condition #25
+OHX26CSC - Coronal Caries: Surface condition #26
+OHX27CSC - Coronal Caries: Surface condition #27
+OHX28CSC - Coronal Caries: Surface condition #28
+OHX29CSC - Coronal Caries: Surface condition #29
+OHX30CSC - Coronal Caries: Surface condition #30
+OHX31CSC - Coronal Caries: Surface condition #31
+OHX02RTC - Coronal Caries: Second restoration #2
+OHX03RTC - Coronal Caries: Second restoration #3
+OHX04RTC - Coronal Caries: Second restoration #4
+OHX05RTC - Coronal Caries: Second restoration #5
+OHX06RTC - Coronal Caries: Second restoration #6
+OHX07RTC - Coronal Caries: Second restoration #7
+OHX08RTC - Coronal Caries: Second restoration #8
+OHX09RTC - Coronal Caries: Second restoration #9
+OHX10RTC - Coronal Caries: Second restoration #10
+OHX11RTC - Coronal Caries: Second restoration #11
+OHX12RTC - Coronal Caries: Second restoration #12
+OHX13RTC - Coronal Caries: Second restoration #13
+OHX14RTC - Coronal Caries: Second restoration #14
+OHX15RTC - Coronal Caries: Second restoration #15
+OHX18RTC - Coronal Caries: Second restoration #18
+OHX19RTC - Coronal Caries: Second restoration #19
+OHX20RTC - Coronal Caries: Second restoration #20
+OHX21RTC - Coronal Caries: Second restoration #21
+OHX22RTC - Coronal Caries: Second restoration #22
+OHX23RTC - Coronal Caries: Second restoration #23
+OHX24RTC - Coronal Caries: Second restoration #24
+OHX25RTC - Coronal Caries: Second restoration #25
+OHX26RTC - Coronal Caries: Second restoration #26
+OHX27RTC - Coronal Caries: Second restoration #27
+OHX28RTC - Coronal Caries: Second restoration #28
+OHX29RTC - Coronal Caries: Second restoration #29
+OHX30RTC - Coronal Caries: Second restoration #30
+OHX31RTC - Coronal Caries: Second restoration #31
+OHX02RSC - Coronal Caries: 2nd restoration code #2
+OHX03RSC - Coronal Caries: 2nd restoration code #3
+OHX04RSC - Coronal Caries: 2nd restoration code #4
+OHX05RSC - Coronal Caries: 2nd restoration code #5
+OHX06RSC - Coronal Caries: 2nd restoration code #6
+OHX07RSC - Coronal Caries: 2nd restoration code #7
+OHX08RSC - Coronal Caries: 2nd restoration code #8
+OHX09RSC - Coronal Caries: 2nd restoration code #9
+OHX10RSC - Coronal Caries: 2nd restoration code #10
+OHX11RSC - Coronal Caries: 2nd restoration code #11
+OHX12RSC - Coronal Caries: 2nd restoration code #12
+OHX13RSC - Coronal Caries: 2nd restoration code #13
+OHX14RSC - Coronal Caries: 2nd restoration code #14
+OHX15RSC - Coronal Caries: 2nd restoration code #15
+OHX18RSC - Coronal Caries: 2nd restoration code #18
+OHX19RSC - Coronal Caries: 2nd restoration code #19
+OHX20RSC - Coronal Caries: 2nd restoration code #20
+OHX21RSC - Coronal Caries: 2nd restoration code #21
+OHX22RSC - Coronal Caries: 2nd restoration code #22
+OHX23RSC - Coronal Caries: 2nd restoration code #23
+OHX24RSC - Coronal Caries: 2nd restoration code #24
+OHX25RSC - Coronal Caries: 2nd restoration code #25
+OHX26RSC - Coronal Caries: 2nd restoration code #26
+OHX27RSC - Coronal Caries: 2nd restoration code #27
+OHX28RSC - Coronal Caries: 2nd restoration code #28
+OHX29RSC - Coronal Caries: 2nd restoration code #29
+OHX30RSC - Coronal Caries: 2nd restoration code #30
+OHX31RSC - Coronal Caries: 2nd restoration code #31
+OHXRCAR - Root caries
+OHXRCARO - Other non-carious root lesion
+OHXRRES - Root caries restoration
+OHXRRESO - Other non-carious root restoration
+OHX02SE - Dental Sealants: #2
+OHX03SE - Dental Sealants: #3
+OHX04SE - Dental Sealants: #4
+OHX05SE - Dental Sealants: #5
+OHX07SE - Dental Sealants: #7
+OHX10SE - Dental Sealants: #10
+OHX12SE - Dental Sealants: #12
+OHX13SE - Dental Sealants: #13
+OHX14SE - Dental Sealants: #14
+OHX15SE - Dental Sealants: #15
+OHX18SE - Dental Sealants: #18
+OHX19SE - Dental Sealants: #19
+OHX20SE - Dental Sealants: #20
+OHX21SE - Dental Sealants: #21
+OHX28SE - Dental Sealants: #28
+OHX29SE - Dental Sealants: #29
+OHX30SE - Dental Sealants: #30
+OHX31SE - Dental Sealants: #31
