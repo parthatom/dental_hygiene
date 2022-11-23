@@ -1,0 +1,169 @@
+OHDEXSTS - Overall Oral Health Exam Status
+OHDDESTS - Dentition Status Code
+OHXIMP - Dental Implant: yes / no?
+OHX01TC - Tooth Count: #1
+OHX02TC - Tooth Count: #2
+OHX03TC - Tooth Count: #3
+OHX04TC - Tooth Count: #4
+OHX05TC - Tooth Count: #5
+OHX06TC - Tooth Count: #6
+OHX07TC - Tooth Count: #7
+OHX08TC - Tooth Count: #8
+OHX09TC - Tooth Count: #9
+OHX10TC - Tooth Count: #10
+OHX11TC - Tooth Count: #11
+OHX12TC - Tooth Count: #12
+OHX13TC - Tooth Count: #13
+OHX14TC - Tooth Count: #14
+OHX15TC - Tooth Count: #15
+OHX16TC - Tooth Count: #16
+OHX17TC - Tooth Count: #17
+OHX18TC - Tooth Count: #18
+OHX19TC - Tooth Count: #19
+OHX20TC - Tooth Count: #20
+OHX21TC - Tooth Count: #21
+OHX22TC - Tooth Count: #22
+OHX23TC - Tooth Count: #23
+OHX24TC - Tooth Count: #24
+OHX25TC - Tooth Count: #25
+OHX26TC - Tooth Count: #26
+OHX27TC - Tooth Count: #27
+OHX28TC - Tooth Count: #28
+OHX29TC - Tooth Count: #29
+OHX30TC - Tooth Count: #30
+OHX31TC - Tooth Count: #31
+OHX32TC - Tooth Count: #32
+OHX02CTC - Coronal Caries: Tooth Count #2
+OHX03CTC - Coronal Caries: Tooth Count #3
+OHX04CTC - Coronal Caries: Tooth Count #4
+OHX05CTC - Coronal Caries: Tooth Count #5
+OHX06CTC - Coronal Caries: Tooth Count #6
+OHX07CTC - Coronal Caries: Tooth Count #7
+OHX08CTC - Coronal Caries: Tooth Count #8
+OHX09CTC - Coronal Caries: Tooth Count #9
+OHX10CTC - Coronal Caries: Tooth Count #10
+OHX11CTC - Coronal Caries: Tooth Count #11
+OHX12CTC - Coronal Caries: Tooth Count #12
+OHX13CTC - Coronal Caries: Tooth Count #13
+OHX14CTC - Coronal Caries: Tooth Count #14
+OHX15CTC - Coronal Caries: Tooth Count #15
+OHX18CTC - Coronal Caries: Tooth Count #18
+OHX19CTC - Coronal Caries: Tooth Count #19
+OHX20CTC - Coronal Caries: Tooth Count #20
+OHX21CTC - Coronal Caries: Tooth Count #21
+OHX22CTC - Coronal Caries: Tooth Count #22
+OHX23CTC - Coronal Caries: Tooth Count #23
+OHX24CTC - Coronal Caries: Tooth Count #24
+OHX25CTC - Coronal Caries: Tooth Count #25
+OHX26CTC - Coronal Caries: Tooth Count #26
+OHX27CTC - Coronal Caries: Tooth Count #27
+OHX28CTC - Coronal Caries: Tooth Count #28
+OHX29CTC - Coronal Caries: Tooth Count #29
+OHX30CTC - Coronal Caries: Tooth Count #30
+OHX31CTC - Coronal Caries: Tooth Count #31
+OHX02CSC - Coronal Caries: Surface condition #2
+OHX03CSC - Coronal Caries: Surface condition #3
+OHX04CSC - Coronal Caries: Surface condition #4
+OHX05CSC - Coronal Caries: Surface condition #5
+OHX06CSC - Coronal Caries: Surface condition #6
+OHX07CSC - Coronal Caries: Surface condition #7
+OHX08CSC - Coronal Caries: Surface condition #8
+OHX09CSC - Coronal Caries: Surface condition #9
+OHX10CSC - Coronal Caries: Surface condition #10
+OHX11CSC - Coronal Caries: Surface condition #11
+OHX12CSC - Coronal Caries: Surface condition #12
+OHX13CSC - Coronal Caries: Surface condition #13
+OHX14CSC - Coronal Caries: Surface condition #14
+OHX15CSC - Coronal Caries: Surface condition #15
+OHX18CSC - Coronal Caries: Surface condition #18
+OHX19CSC - Coronal Caries: Surface condition #19
+OHX20CSC - Coronal Caries: Surface condition #20
+OHX21CSC - Coronal Caries: Surface condition #21
+OHX22CSC - Coronal Caries: Surface condition #22
+OHX23CSC - Coronal Caries: Surface condition #23
+OHX24CSC - Coronal Caries: Surface condition #24
+OHX25CSC - Coronal Caries: Surface condition #25
+OHX26CSC - Coronal Caries: Surface condition #26
+OHX27CSC - Coronal Caries: Surface condition #27
+OHX28CSC - Coronal Caries: Surface condition #28
+OHX29CSC - Coronal Caries: Surface condition #29
+OHX30CSC - Coronal Caries: Surface condition #30
+OHX31CSC - Coronal Caries: Surface condition #31
+OHX02RTC - Coronal Caries: Second restoration #2
+OHX03RTC - Coronal Caries: Second restoration #3
+OHX04RTC - Coronal Caries: Second restoration #4
+OHX05RTC - Coronal Caries: Second restoration #5
+OHX06RTC - Coronal Caries: Second restoration #6
+OHX07RTC - Coronal Caries: Second restoration #7
+OHX08RTC - Coronal Caries: Second restoration #8
+OHX09RTC - Coronal Caries: Second restoration #9
+OHX10RTC - Coronal Caries: Second restoration #10
+OHX11RTC - Coronal Caries: Second restoration #11
+OHX12RTC - Coronal Caries: Second restoration #12
+OHX13RTC - Coronal Caries: Second restoration #13
+OHX14RTC - Coronal Caries: Second restoration #14
+OHX15RTC - Coronal Caries: Second restoration #15
+OHX18RTC - Coronal Caries: Second restoration #18
+OHX19RTC - Coronal Caries: Second restoration #19
+OHX20RTC - Coronal Caries: Second restoration #20
+OHX21RTC - Coronal Caries: Second restoration #21
+OHX22RTC - Coronal Caries: Second restoration #22
+OHX23RTC - Coronal Caries: Second restoration #23
+OHX24RTC - Coronal Caries: Second restoration #24
+OHX25RTC - Coronal Caries: Second restoration #25
+OHX26RTC - Coronal Caries: Second restoration #26
+OHX27RTC - Coronal Caries: Second restoration #27
+OHX28RTC - Coronal Caries: Second restoration #28
+OHX29RTC - Coronal Caries: Second restoration #29
+OHX30RTC - Coronal Caries: Second restoration #30
+OHX31RTC - Coronal Caries: Second restoration #31
+OHX02RSC - Coronal Caries: 2nd restoration code #2
+OHX03RSC - Coronal Caries: 2nd restoration code #3
+OHX04RSC - Coronal Caries: 2nd restoration code #4
+OHX05RSC - Coronal Caries: 2nd restoration code #5
+OHX06RSC - Coronal Caries: 2nd restoration code #6
+OHX07RSC - Coronal Caries: 2nd restoration code #7
+OHX08RSC - Coronal Caries: 2nd restoration code #8
+OHX09RSC - Coronal Caries: 2nd restoration code #9
+OHX10RSC - Coronal Caries: 2nd restoration code #10
+OHX11RSC - Coronal Caries: 2nd restoration code #11
+OHX12RSC - Coronal Caries: 2nd restoration code #12
+OHX13RSC - Coronal Caries: 2nd restoration code #13
+OHX14RSC - Coronal Caries: 2nd restoration code #14
+OHX15RSC - Coronal Caries: 2nd restoration code #15
+OHX18RSC - Coronal Caries: 2nd restoration code #18
+OHX19RSC - Coronal Caries: 2nd restoration code #19
+OHX20RSC - Coronal Caries: 2nd restoration code #20
+OHX21RSC - Coronal Caries: 2nd restoration code #21
+OHX22RSC - Coronal Caries: 2nd restoration code #22
+OHX23RSC - Coronal Caries: 2nd restoration code #23
+OHX24RSC - Coronal Caries: 2nd restoration code #24
+OHX25RSC - Coronal Caries: 2nd restoration code #25
+OHX26RSC - Coronal Caries: 2nd restoration code #26
+OHX27RSC - Coronal Caries: 2nd restoration code #27
+OHX28RSC - Coronal Caries: 2nd restoration code #28
+OHX29RSC - Coronal Caries: 2nd restoration code #29
+OHX30RSC - Coronal Caries: 2nd restoration code #30
+OHX31RSC - Coronal Caries: 2nd restoration code #31
+OHXRCAR - Root caries
+OHXRCARO - Other non-carious root lesion
+OHXRRES - Root caries restoration
+OHXRRESO - Other non-carious root restoration
+OHX02SE - Dental Sealants: #2
+OHX03SE - Dental Sealants: #3
+OHX04SE - Dental Sealants: #4
+OHX05SE - Dental Sealants: #5
+OHX07SE - Dental Sealants: #7
+OHX10SE - Dental Sealants: #10
+OHX12SE - Dental Sealants: #12
+OHX13SE - Dental Sealants: #13
+OHX14SE - Dental Sealants: #14
+OHX15SE - Dental Sealants: #15
+OHX18SE - Dental Sealants: #18
+OHX19SE - Dental Sealants: #19
+OHX20SE - Dental Sealants: #20
+OHX21SE - Dental Sealants: #21
+OHX28SE - Dental Sealants: #28
+OHX29SE - Dental Sealants: #29
+OHX30SE - Dental Sealants: #30
+OHX31SE - Dental Sealants: #31
